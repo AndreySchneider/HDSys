@@ -1,0 +1,261 @@
+##########################################################################################################
+
+
+
+Tela Login
+	Campo	Username
+	Campo	Senha
+	Botão	Entra
+	Link	Esqueceu a senha?
+	Link	Novo Profissional
+	Link	Novo Paciente
+
+
+
+##########################################################################################################
+
+
+
+Tela "Esqueceu a senha?"
+	Campo	CPF
+	Campo	Email
+	Botão	Enviar
+
+
+Tela após "Esqueceu a senha?"
+	Texto	"Email enviado com senha temporária."
+	Botão	Voltar para a página inicial
+
+
+
+Obs: para criar uma senha temporária é necessário adicionar um campo ao objeto usuário a_senha_é_temporária?
+
+
+
+##########################################################################################################
+
+
+
+Tela "Novo Profissional"
+	Campos	Dados
+	Texto	"Cadastrando você aceita os termos de uso."
+	Botão	Enviar
+
+
+Tela após "Novo Profissional"
+	Texto	"Conta criada. Aguardar email de confirmação de cadastro pelos gestores do sistema."
+	Botão	Voltar para a página inicial
+
+
+
+##########################################################################################################
+
+
+
+Tela "Novo Paciente"
+	Campos	Dados
+	Campo	CPF do Profissional
+	Texto	"Cadastrando você aceita os termos de uso."
+	Botão	Enviar
+
+
+Tela após "Novo Paciente"
+	Texto	"Conta criada. Aguardar email de confirmação de cadastro pelo profissional de saúde."
+	Botão	Voltar para a página inicial
+
+
+
+##########################################################################################################
+
+
+
+Tela Inicial
+	Qualquer usuário
+		Link	Trocar senha
+		Link	Atualizar cadastro
+		Link	Logout
+
+	Paciente
+		Link	Adicionar medida
+		Link	Listar medidas
+
+	Profissional
+		Link	Listar Pacientes
+		Link	Confirmar cadastros
+	
+	Gestor
+		Link	Listar Profissionais
+		Link	Confirmar cadastros
+		Link	Estatísticas
+
+
+
+Obs: ao logar, se a senha for temporária, redirecionar para trocar senha.
+
+
+
+##########################################################################################################
+
+
+
+Tela "Trocar Senha"
+	Campo	Senha Atual
+	Campo	Nova Senha
+	Campo	Repetir nova senha
+	Botão	Confirmar
+
+
+Tela Após "Trocar Senha"
+	Texto	"Senha Trocada"
+	Botão	Voltar para a página inicial (forçando logout)
+
+
+
+##########################################################################################################
+
+
+
+Tela "Atualizar Cadastro"
+	Campos	Dados (preenchidos com os valores atuais)
+	Botão	Confirmar
+	Botão	Remover conta
+
+
+Tela Após "Atualizar Cadastro"
+	Texto	"Cadastro Atualizado"
+	Botão	Voltar para a página inicial
+
+
+Tela "Remover Conta"
+	Texto	"Tem certeza?"
+	Botão	Remover
+	Botão	Voltar para a página inicial
+
+
+Tela Após "Remover Conta"
+	Texto	"Conta Removida"
+	Botão	Voltar para a página inicial
+
+
+
+##########################################################################################################
+
+
+
+Tela "Adicionar Medida"
+	Campos	Dados
+	Botão	Enviar
+
+
+Tela Após "Adicionar Medida"
+	Texto	"Medida Adicionada" ou "Alarme"
+	Botão	Voltar para a página inicial
+
+
+
+##########################################################################################################
+
+
+
+Tela "Listar Medidas"
+	Lista de medidas públicas com seus valores no formato de uma tabela. 
+	Em cada linha, um link de edição e um aviso de alarme se for o caso.
+	Se possível, um gráfico das medidas.
+	Filtro por data. 
+
+	Botão	Adicionar medida
+	Botão	Voltar para a página inicial
+
+
+Tela "Editar Medidas"
+	Campos	Dados (preenchidos com os valores atuais)
+	Botão	Confirmar
+	Botão	Remover Medida
+
+
+Tela Após "Editar Medida"
+	Texto	"Medida Atualizada"
+	Botão	Voltar para a página inicial
+
+
+Tela "Remover Medida"
+	Texto	Dados da Medida
+	Texto	"Tem certeza?"
+	Botão	Remover
+	Botão	Voltar para a página inicial
+
+
+Tela Após "Remover Medida"
+	Texto	"Medida Removida"
+	Botão	Voltar para a página inicial
+
+
+
+##########################################################################################################
+
+
+
+Tela "Confirmar Cadastros"
+	Profissional
+		Lista de pacientes a confirmar em tabela. Em cada linha botão confirmar ou excluir.
+		Botão	Voltar para a página inicial
+
+
+	Gestor
+		Lista de profissionais a confirmar em tabela. Em cada linha botão confirmar ou excluir.
+		Botão	Voltar para a página inicial
+
+
+Tela Após "Confirmar Cadastro"
+	Texto	"Cadastro Confirmado"
+	Botão	Voltar para a tela "Confirmar Cadastros"
+
+
+Tela "Excluir"
+	Texto	Dados do usuário
+	Texto	"Tem certeza?"
+	Botão	Excluir
+	Botão	Voltar para a tela "Confirmar Cadastros"
+
+
+Tela Após "Excluir"
+	Texto	"Usuário Excluído"
+	Botão	Voltar para a tela "Confirmar Cadastros"
+
+
+
+##########################################################################################################
+
+
+
+Tela "Listar Pacientes"
+	Lista de pacientes em tabela. 
+	Em cada linha botão para listar medidas do paciente (tela "listar medidas").
+	Em cada linha um aviso se o paciente teve um alarme (na última medida ou desde o último login do profissional ou sei lá o quê).
+
+	Botão	Voltar para a página inicial
+
+
+
+##########################################################################################################
+
+
+
+Tela "Listar Profissionais"
+	Lista de profissionais em tabela. 
+	Em cada linha botão para listar os pacientes do profissional (tela "listar pacientes").
+
+	Botão	Voltar para a página inicial
+
+
+
+##########################################################################################################
+
+
+
+Tela "Estatísticas"
+	Não sei.
+
+
+
+##########################################################################################################

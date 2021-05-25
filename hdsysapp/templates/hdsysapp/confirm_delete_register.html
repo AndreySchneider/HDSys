@@ -1,0 +1,8 @@
+<head>
+        <title>HDSYS - Confirmar exclusão de cadastro?</title>
+    </head>
+    <h1>Confirmar exclusão de cadastro?</h1>
+    <form method="POST" class="delete-register-form">{% csrf_token %}
+        <button type="submit" class="save btn btn-default">Sim</button>
+        <button type="reset" class="cancel btn btn-default" onclick="location.href='{% url 'home' %}'">Não</button>
+    </form>

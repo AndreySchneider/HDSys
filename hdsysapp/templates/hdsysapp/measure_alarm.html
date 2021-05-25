@@ -1,0 +1,62 @@
+<head>
+	<title>HDSYS - Alarme de Medidas</title>
+</head>
+{% extends 'hdsysapp/base.html' %}
+{% block content %}
+<h1>Alarme de Medida {{ patient.user.fullname }} ({{ patient.user.username }})</h1>
+<br>
+<b><font color="red">ATENÇÃO! A medida inserida está fora dos limites seguros! Procure o profissional de saúde imediatamente!</font></b>
+<br>
+<br>
+<table border="1">
+	<tr>
+		<th>Data da medida</th>
+		<th>Glicose</th>
+		<th>Batimentos Cardíacos</th>		
+		<th>Pressão Máxima</th>
+		<th>Pressão Mínima</th>
+		<th></th>
+		<th></th>
+	</tr>
+  	
+  	<tr>
+    	<td>{{ measure.measure_date }}</td>
+        {% if measure.glucose > 125 or measure.glucose < 50 %}
+            <td bgcolor="red">{{ measure.glucose }}</td>
+        {% elif measure.glucose > 100 or measure.glucose < 70%}
+            <td bgcolor="yellow">{{ measure.glucose }}</td>
+        {% else %}
+            <td>{{ measure.glucose }}</td>
+        {% endif %}
+
+        {% if measure.heart_rate > 150 or measure.heart_rate < 40 %}
+            <td bgcolor="red">{{ measure.heart_rate }}</td>
+        {% elif measure.heart_rate > 100 or measure.heart_rate < 60 %}
+            <td bgcolor="yellow">{{ measure.heart_rate }}</td>
+        {% else %}
+            <td>{{ measure.heart_rate }}</td>
+        {% endif %}
+
+        {% if measure.max_pressure > 160 or measure.max_pressure < 80 %}
+            <td bgcolor="red">{{ measure.max_pressure }}</td>
+        {% elif measure.max_pressure > 140 or measure.max_pressure < 90 %}
+            <td bgcolor="yellow">{{ measure.max_pressure }}</td>
+        {% else %}
+            <td>{{ measure.max_pressure }}</td>
+        {% endif %}
+
+        {% if measure.min_pressure > 100 or measure.min_pressure < 50 %}
+            <td bgcolor="red">{{ measure.min_pressure }}</td>
+        {% elif measure.min_pressure > 90 or measure.min_pressure < 60 %}
+            <td bgcolor="yellow">{{ measure.min_pressure }}</td>
+        {% else %}
+            <td>{{ measure.min_pressure }}</td>
+        {% endif %}
+
+		<td><a href="{% url 'edit_measure' pk=measure.pk %}">Editar</a></td>
+		<td><a href="{% url 'delete_measure' pk=measure.pk %}">Excluir</a></td>
+    </tr>
+	
+</table>
+<a href="{% url 'home' %}">Voltar</a>
+{% endblock content %}

@@ -1,0 +1,8 @@
+<div class="page-header">
+      {% if user.is_authenticated %}
+        <a href="{% url 'home' %}">Home</a> <a href="{% url 'edit_user' %}">Meu Cadastro</a> <a href="{% url 'change_password' %}">Alterar Senha</a> <a href="{% url 'logout' %}">Logout</a></p>
+        <p class="top-menu">Olá, {{ user.fullname }}
+      {% endif %}
+</div>
+{% block content %}
+{% endblock %}

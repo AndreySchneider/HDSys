@@ -1,0 +1,12 @@
+	<head>
+        <title>HDSYS - Medida</title>
+    </head>
+    {% extends 'hdsysapp/base.html' %}
+    {% block content %}
+    <h1>Medida</h1>
+    <form method="POST" class="user-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Salvar</button>
+        <button type="reset" class="cancel btn btn-default" onclick="location.href='{% url 'home' %}'">Cancelar</button>
+    </form>
+    {% endblock content %}

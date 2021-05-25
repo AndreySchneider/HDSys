@@ -1,0 +1,11 @@
+	<head>
+        <title>HDSYS - Falha de exclusão de cadastro</title>
+    </head>
+    <h1>Falha exclusão de cadastro</h1>
+    Você não tem permissão para excluir seu cadastro. Contacte seu gestor ou o administrador do sistema.<br><br>
+    Possíveis causas:<br>
+    - Você é um profissional de saúde e existem pacientes atrelados ao seu cadastro.<br>
+    - Você é um administrador.<br><br>
+    <form method="POST" class="delete-register-form">{% csrf_token %}
+        <button type="reset" class="cancel btn btn-default" onclick="location.href='{% url 'home' %}'">Ok</button>
+    </form>

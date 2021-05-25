@@ -1,0 +1,258 @@
+Tutorial Projeto HDSys
+
+- Criar diretório do projeto:
+mkdir hdsys
+cd hdsys
+
+-Instalar ambiente virtual Python 3:
+sudo apt-get install python3-venv
+
+- Criar o ambiente virtual
+python3 -m venv hdsysvenv
+
+- Trabalhar dentro do ambiente (sempre utilizar o comando abaixo antes de começar a trabalhar no projeto):
+source hdsysvenv/bin/activate
+
+- Instalação do Django:
+pip install Django==1.10.2
+pip install --upgrade pip
+
+- Criar projeto Django (comando que cria árvores de diretórios):
+django-admin startproject hdsyssite .
+
+- Ajustar arquivo de configurações (hdsys/hdsyssite/settings.py):
+	- Alterar a linha do TIME_ZONE para:
+	TIME_ZONE = 'America/Sao_Paulo'
+
+	- Incluir a linha abaixo:
+	STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+- Criar banco de dados:
+python manage.py migrate
+
+- Rodar servidor:
+python manage.py runserver Obs.: deixar o comando rodando no terminal sempre que quiser testar pelo navegador web
+Acessar no navegador: http://127.0.0.1:8000/
+
+- Criar aplicação:
+python manage.py startapp hdsysapp
+
+- Incluir a aplicação nas configurações do projeto:
+	- Adicionar a aplicação na estrutura INSTALLED_APPS:
+	INSTALLED_APPS = (
+	    'django.contrib.admin',
+	    'django.contrib.auth',
+	    'django.contrib.contenttypes',
+	    'django.contrib.sessions',
+	    'django.contrib.messages',
+	    'django.contrib.staticfiles',
+	    'hdsysapp',
+	)
+
+- Criar o modelo de dados (hdsys/hdsysapp/models.py)
+	- Para criar modelo de dados com usuário personalizado:
+	Seguir tutorial do link: http://procrastinatingdev.com/django/using-configurable-user-models-in-django-1-5/
+
+- Criar tabelas do modelo de dados:
+python manage.py makemigrations hdsysapp
+python manage.py migrate hdsysapp
+
+- Testar sistema de usuário personalizado:
+	- Caso aconteça algum erro ou se recomeçar as tabelas do banco de dados, é necessário apagar os seguintes arquivos:
+	hdsys/db.sqlite3
+	hdsys/hdsysapp/migrations/* Obs.: DEIXAR apenas o arquivo __init__.py
+
+	- Regerar arquivo de migrações e criação de tabelas
+	python manage.py makemigrations hdsysapp
+	python manage.py migrate Obs.: este comando realiza a criação de todas as tabelas, não só as do hdsysapp
+
+- Criar superusuario para acessar a página http://127.0.0.1:8000/admin:
+python manage.py createsuperuser
+
+- Comandos GIT:
+	- Instalar GIT:
+	sudo apt-get install git
+
+	- Criar repositório:
+	git init Obs.: o comando deve ser dado dentro do diretório hdsys
+
+	- Configurar usuário:
+	git config user.name "Your Name"
+	git config user.email you@example.com
+
+	- Criar arquivo hdsys/.gitignore com o seguinte conteúdo:
+	*.pyc
+	__pycache__
+	hdsysvenv
+	db.sqlite3
+	.DS_Store
+
+	Obs.: o banco de dados NÃO será enviado ao repositório e à nuvem
+
+	- Ligar o git à nuvem:
+	git remote add origin https://felipecvmartins@bitbucket.org/felipecvmartins/hdsys.git
+
+	Obs.: até aqui os comandos git são feitos uma única vez apenas para configuração. Daqui para frente os comandos são rotineiros.
+
+	- Visualizar o status dos arquivos do projeto:
+	git status
+
+	- Para adicionar todos os arquivos alterados/criados no projeto:
+	git add --all
+
+	- Commitar as alterações feitas no controle de versão:
+	git commit -m "Comentário do commit."
+
+	- Enviar código para nuvem (Bitbucket)
+	git push -u origin master
+
+PythonAnywhere
+Abrir bash
+git clone https://github.com/<your-github-username>/hdsys.git (substituir link por link do bitbucket)
+
+cd hdsys
+virtualenv --python=python3.5 hdsysvenv
+source hdsysvenv/bin/activate
+pip install django whitenoise
+python manage.py collectstatic
+python manage.py migrate
+python manage.py createsuperuser
+
+Na aba Web > Add a new web app > manual configuration > Python 3.5 (não escolher a opção Django)
+Virtualenv > Enter the path to a virtualenv > /home/<your-username>/hdsys/hdsysvenv/
+
+Link AWSGI configuration file:
+import os
+import sys
+
+path = '/home/felipecvmartins/hdsys'
+if path not in sys.path:
+    sys.path.append(path)
+
+os.environ['DJANGO_SETTINGS_MODULE'] = 'hdsyssite.settings'
+
+from django.core.wsgi import get_wsgi_application
+from whitenoise.django import DjangoWhiteNoise
+application = DjangoWhiteNoise(get_wsgi_application())
+
+Save e Reload
+	
+
+Regex
+^ para o início do texto
+$ para o final do texto 
+\d para um dígito 
++ para indicar que o item anterior deve ser repetido pelo menos uma vez 
+() para capturar parte do padrão
+
+
+
+Django Geolocation
+A instalação é simples:
+pip install django-geoposition
+
+Coloque a linha abaixo no seu arquivo settings.py, em INSTALLED_APPS:
+INSTALLED_APPS = (
+    ...
+    'geoposition',
+    ...
+)
+
+No settings.py:
+GEOPOSITION_GOOGLE_MAPS_API_KEY = 'AIzaSyBP1c3YJMmR0DAKikwV8sRalUoqlgySr1s'
+
+GEOPOSITION_MAP_OPTIONS = {
+    'minZoom': 3,
+    'maxZoom': 15,
+}
+
+GEOPOSITION_MARKER_OPTIONS = {
+    'cursor': 'move'
+}
+
+GEOPOSITION_MAP_WIDGET_HEIGHT = 300
+}
+
+
+Links úteis:
+https://tutorial.djangogirls.org/pt/
+
+http://djangoweb.blogspot.com.br/2015/09/plugins-uteis-django-geoposition-como.html
+
+https://github.com/philippbosch/django-geoposition
+
+https://groups.google.com/forum/m/#!topic/django-brasil/XYeCC4n6UGo
+
+https://developers.google.com/maps/documentation/javascript/tutorial
+
+http://www.cepaberto.com/
+
+http://stackoverflow.com/questions/15491727/include-css-and-javascript-in-my-django-template
+
+
+
+Utilização do Python 2.7
+- Instalar virtualenv
+sudo pip install virtualenv
+
+- Criar virtualenv
+virtualenv hdsysvenv2
+
+- Utilizar o virtualenv:
+source hdsysvenv2/bin/activate
+
+- Instalar pacotes
+pip install --upgrade pip
+pip install Django==1.10.2
+pip install django-geoposition
+
+Colocar a seguinte linha na primeira linha dos arquivos forms.py, models.py e views.py:
+# -*- coding: utf-8 -*-
+#Python 2.7################################################
+
+Obs.: a adição das linhas acima não prejudica o código em Python 3
+
+ou
+
+# -*- coding: iso-8859-15 -*-
+#Python 2.7################################################
+
+Como usar AWS:
+Dentro do virtualenv:
+pip install --upgrade awsebcli
+
+Para verificar se a instalação está ok:
+pip freeze
+eb --version
+
+Para desinstalar o ebcli:
+pip uninstall awsebcli
+
+cd hdsys
+source hdsysvenv2/bin/activate
+pip freeze > requirements.txt
+mkdir .ebextensions
+
+Exemplo ~ / hdsys / .ebextensions / django.config
+option_settings:
+  aws:elasticbeanstalk:container:python:
+    WSGIPath: hdsyssite/wsgi.py
+
+Acessar https://console.aws.amazon.com/iam/home
+Criar usuário em Create individual IAM users
+Liberar acesso para AWSElasticBeanstalkFullAccess - AWS Managed policy e AWSElasticBeanstalkService - AWS Managed policy
+Inicializar o EBCLI (no terminal): eb init -p python2.7 hdsys-aws
+Utilizar access id e secret key do usuário criado
+Criar virtual env na AWS: eb create hdsysvenv2-eb
+Para testar: eb open
+Para atualizar o código na AWS: eb deploy
+Para terminar a instância: eb terminate hdsysvenv2-eb
+
+
+
+
+Commit do código para não ficar nada pendente e tentar rodar novamente a implantação na aws.
+
+Testar instalar pip fora do virtualenv e instalar o ebcli fora do virtualenv seguindo o tutorial:
+http://docs.aws.amazon.com/pt_br/elasticbeanstalk/latest/dg/eb-cli3-install.html
+http://docs.aws.amazon.com/pt_br/elasticbeanstalk/latest/dg/create-deploy-python-django.html

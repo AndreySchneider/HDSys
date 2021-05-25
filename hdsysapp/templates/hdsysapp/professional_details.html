@@ -1,0 +1,46 @@
+<head>
+	<title>HDSYS - Detalhes do Profissional</title>
+</head>
+{% extends 'hdsysapp/base.html' %}
+{% block content %}
+
+{% load static %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+
+<h1>Detalhes do Profissional</h1>
+<br>
+Nome de usuário: {{ professional.user.username }}
+<br>
+Nome Completo: {{ professional.user.fullname }}
+<br>
+E-mail: {{ professional.user.email }}
+<br>
+CPF: {{ professional.user.cpf }}
+<br>
+RG: {{ professional.user.rg }}
+<br>
+<br>
+Endereço
+<br>
+Logradouro: {{ address.street }}
+<br>
+Número: {{ address.number }}
+<br>
+Complemento: {{ address.complement }}
+<br>
+Bairro: {{ address.neighborhood }}
+<br>
+Cidade: {{ address.city }}
+<br>
+Estado: {{ address.state }}
+<br>
+País: {{ address.country }}
+<br>
+{{ form.media }}
+{{ form.as_p }}
+<script type="text/javascript" src='{% static "js/geoposition.js" %}'></script>
+<link rel="stylesheet" href="{% static 'css/geoposition.css' %}">
+<br>
+<br>
+<a href="javascript:history.back()">Voltar</a>
+{% endblock content %}

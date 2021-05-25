@@ -1,0 +1,23 @@
+<head>
+	<title>HDSYS - Lista de Gestores</title>
+</head>
+{% extends 'hdsysapp/base.html' %}
+{% block content %}
+<h1>Lista de Gestores</h1>
+<table border="1">
+	<tr>
+		<th>Nome de usuário</th>
+		<th>Nome completo</th>
+		<th></th>
+	</tr>
+  	
+  	{% for manager in managers %}
+  	<tr>
+    	<td>{{ manager.user.username }}</td>
+    	<td>{{ manager.user.fullname }}</td>
+		<td><a href="{% url 'manager_details' pk=manager.pk %}">Detalhes</a></td>
+    </tr>
+	{% endfor %}
+</table>
+<a href="javascript:history.back()">Voltar</a>
+{% endblock content %}

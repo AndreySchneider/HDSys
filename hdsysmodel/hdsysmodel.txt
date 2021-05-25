@@ -1,0 +1,85 @@
+User
+	Username
+	Fullname
+	CPF
+	RG
+	Email
+	Register_date
+	Register_status
+	Password (no django está implícito)
+
+Endereço
+	Objeto User (1:1 - OneToOneField)
+	Rua
+	Número
+	Complemento
+	Bairro
+	Cidade
+	Estado
+	País
+	CEP
+
+
+Administrator
+	Objeto User (1:1 - OneToOneField)
+
+
+Manager
+	Objeto User (1:1 - OneToOneField)
+
+
+Professional
+	Objeto User (1:1 - OneToOneField)
+
+
+Patient
+	Objeto User (1:1 - OneToOneField)
+	Objeto Professional (N:1 - ForeignKey)
+	Birth_date
+	Plan
+	Sex
+	Ethnicity
+	Weight
+	Height
+
+Login
+	Objeto User (N:1 - ForeignKey)
+	Login_date
+
+
+Logout
+	Objeto User (N:1 - ForeignKey)
+	Logout_date
+
+
+PrivateMeasure
+	Objeto Patient (N:1 - ForeignKey)
+	Quem_fez_a_entrada_da_medida? Objeto User (N:1 - ForeignKey)
+	Insertion_date
+	Measure_date
+	Heart_rate
+	Max_pressure
+	Min_pressure
+	Glucose 
+
+
+PublicMeasure
+	Objeto PrivateMeasure (1:1 - OneToOneField)
+
+
+EditMeasure
+	Objeto PrivateMeasure (N:1 - ForeignKey)
+	Quem_fez_a_edição_da_medida? Objeto User (N:1 - ForeignKey)
+	Edit_date
+	Previous_Measure_date
+	Previous_Heart_rate
+	Previous_Max_pressure
+	Previous_Min_pressure
+	Previous_Glucose 
+
+
+DeleteMeasure
+	Objeto PrivateMeasure (1:1 - OneToOneField)
+	Quem_fez_a_remoção_da_medida? Objeto User (N:1 - ForeignKey)
+	Detele_date
+

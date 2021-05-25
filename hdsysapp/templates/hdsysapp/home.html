@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>HDSYS - Home Page</title>
+    </head>
+    {% extends 'hdsysapp/base.html' %}
+    {% block content %}
+    <body>
+        <p>HDSYS</p>
+        <p>Home Page</p>
+        {% if is_patient %}
+            <a href="{% url 'new_measure' %}">Inserir Medida</a>
+            <a href="{% url 'list_measures' %}">Listar Medidas</a>
+        {% endif %}
+
+        {% if is_professional %}
+            <a href="{% url 'list_patients' %}">Listar Pacientes</a>
+            <a href="{% url 'activate_patients' %}">Cadastro de Pacientes</a>
+        {% endif %}
+
+        {% if is_manager %}
+            <a href="{% url 'list_professionals' %}">Listar Profissionais</a>
+            <a href="{% url 'activate_professionals' %}">Cadastro de Profissionais</a>
+        {% endif %}
+        {% if user.is_admin %}
+            <a href="{% url 'new_user' %}">Novo Gestor</a>
+            <a href="{% url 'list_managers' %}">Listar Gestores</a>
+        {% endif %}
+    </body>
+    {% endblock content %}
+</html>

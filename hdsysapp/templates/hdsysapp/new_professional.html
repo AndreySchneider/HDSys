@@ -1,0 +1,24 @@
+	<head>
+        <title>HDSYS - Novo Profissional</title>
+    </head>
+
+	{% extends 'hdsysapp/base.html' %}
+
+    {% block content %}
+    {% load static %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+
+    <h1>Novo Profissional</h1>
+    <form method="POST" class="professional-form">{% csrf_token %}
+        {{ form1.as_p }}
+        {{ form2.media }}
+        {{ form2.as_p }}
+        Ao concluir o cadastro e clicar em "Salvar", você concorda com os <a href="{% url 'terms_of_use' %}">Termos de Uso</a>.
+        <br>
+        <br>
+        <button type="submit" class="save btn btn-default">Salvar</button>
+        <button type="reset" class="cancel btn btn-default" onclick="location.href='{% url 'home' %}'">Cancelar</button>
+    </form>
+    <script type="text/javascript" src='{% static "js/geoposition.js" %}'></script>
+    <link rel="stylesheet" href="{% static 'css/geoposition.css' %}">
+    {% endblock content %}

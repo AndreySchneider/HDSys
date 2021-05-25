@@ -1,0 +1,6 @@
+---
+applications:
+ - name: hdsys
+   random-route: true
+   memory: 256M
+   command: sh run.sh

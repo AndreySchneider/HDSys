@@ -1,0 +1,59 @@
+<head>
+	<title>HDSYS - Detalhes do Paciente</title>
+</head>
+{% extends 'hdsysapp/base.html' %}
+{% block content %}
+
+{% load static %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+
+<h1>Detalhes do Paciente</h1>
+<br>
+Nome de usuário: {{ patient.user.username }}
+<br>
+Nome Completo: {{ patient.user.fullname }}
+<br>
+E-mail: {{ patient.user.email }}
+<br>
+CPF: {{ patient.user.cpf }}
+<br>
+RG: {{ patient.user.rg }}
+<br>
+<br>
+Endereço
+<br>
+Logradouro: {{ address.street }}
+<br>
+Número: {{ address.number }}
+<br>
+Complemento: {{ address.complement }}
+<br>
+Bairro: {{ address.neighborhood }}
+<br>
+Cidade: {{ address.city }}
+<br>
+Estado: {{ address.state }}
+<br>
+País: {{ address.country }}
+<br>
+
+{{ form.media }}
+{{ form.as_p }}
+<script type="text/javascript" src='{% static "js/geoposition.js" %}'></script>
+<link rel="stylesheet" href="{% static 'css/geoposition.css' %}">
+
+Data de Nascimento: {{ patient.birth_date }}
+<br>
+Convênio: {{ patient.plan }}
+<br>
+Sexo: {{ patient.sex }}
+<br>
+Etnia: {{ patient.ethnicity }}
+<br>
+Peso: {{ patient.weight }}
+<br>
+Altura: {{ patient.height }}
+<br>
+<br>
+<a href="javascript:history.back()">Voltar</a>
+{% endblock content %}

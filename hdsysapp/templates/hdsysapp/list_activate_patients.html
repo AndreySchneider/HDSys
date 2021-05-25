@@ -1,0 +1,29 @@
+<head>
+	<title>HDSYS - Lista de Ativação de Registro de Pacientes</title>
+</head>
+{% extends 'hdsysapp/base.html' %}
+{% block content %}
+<h1>Lista de Ativação de Registro de Pacientes</h1>
+<table border="1">
+	<tr>
+		<th>Nome de usuário</th>
+		<th>Nome completo</th>
+		<th>Data de Cadastro</th>
+		<th></th>
+		<th></th>
+		<th></th>
+	</tr>
+  	
+  	{% for patient in patients %}
+  	<tr>
+    	<td>{{ patient.user.username }}</td>
+    	<td>{{ patient.user.fullname }}</td>
+    	<td>{{ patient.user.register_date }}</td>
+    	<td><a href="{% url 'patient_details' pk=patient.pk %}">Detalhes</a></td>
+    	<td><a href="{% url 'activate_user' pk=patient.pk %}">Ativar</a></td>
+    	<td><a href="{% url 'delete_user' pk=patient.pk %}">Excluir</a></td>
+    </tr>
+	{% endfor %}
+</table>
+<a href="{% url 'home' %}">Voltar</a>
+{% endblock content %}

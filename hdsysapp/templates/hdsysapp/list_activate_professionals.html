@@ -1,0 +1,29 @@
+<head>
+	<title>HDSYS - Lista de Ativação de Registro de Profissionais</title>
+</head>
+{% extends 'hdsysapp/base.html' %}
+{% block content %}
+<h1>Lista de Ativação de Registro de Profissionais</h1>
+<table border="1">
+	<tr>
+		<th>Nome de usuário</th>
+		<th>Nome completo</th>
+		<th>Data de Cadastro</th>
+		<th></th>
+		<th></th>
+		<th></th>
+	</tr>
+  	
+  	{% for professional in professionals %}
+  	<tr>
+    	<td>{{ professional.user.username }}</td>
+    	<td>{{ professional.user.fullname }}</td>
+    	<td>{{ professional.user.register_date }}</td>
+    	<td><a href="{% url 'professional_details' pk=professional.pk %}">Detalhes</a></td>
+    	<td><a href="{% url 'activate_user_professional' pk=professional.pk %}">Ativar</a></td>
+    	<td><a href="{% url 'delete_user_professional' pk=professional.pk %}">Excluir</a></td>
+    </tr>
+	{% endfor %}
+</table>
+<a href="{% url 'home' %}">Voltar</a>
+{% endblock content %}

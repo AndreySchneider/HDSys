@@ -1,0 +1,27 @@
+<head>
+	<title>HDSYS - Lista de Pacientes</title>
+</head>
+{% extends 'hdsysapp/base.html' %}
+{% block content %}
+<h1>Lista de Pacientes</h1>
+<table border="1">
+	<tr>
+		<th>Nome de usuário</th>
+		<th>Nome completo</th>
+		<th></th>
+		<th></th>
+		<th></th>
+	</tr>
+  	
+  	{% for patient in patients %}
+  	<tr>
+    	<td>{{ patient.user.username }}</td>
+    	<td>{{ patient.user.fullname }}</td>
+		<td><a href="{% url 'patient_details' pk=patient.pk %}">Detalhes</a></td>
+		<td><a href="{% url 'new_measure' pk=patient.pk %}">Inserir medida</a></td>
+		<td><a href="{% url 'list_measures' pk=patient.pk %}">Ver medidas</a></td>
+    </tr>
+	{% endfor %}
+</table>
+<a href="javascript:history.back()">Voltar</a>
+{% endblock content %}

@@ -1,0 +1,23 @@
+	<head>
+        <title>HDSYS - Meu Cadastro</title>
+    </head>
+
+    {% extends 'hdsysapp/base.html' %}
+
+	{% block content %}
+    {% load static %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+
+    <h1>Meu Cadastro</h1>
+    <form method="POST" class="edituser-form">{% csrf_token %}
+        {{ form1.as_p }}
+        {{ form2.media }}
+        {{ form2.as_p }}
+        {{ form3.as_p }}
+        <button type="submit" class="save btn btn-default">Salvar</button>
+        <button type="reset" class="cancel btn btn-default" onclick="location.href='javascript:history.back()'">Cancelar</button>
+        <button type="reset" class="delete btn btn-default" onclick="location.href='{% url 'delete_register' %}'">Excluir Cadastro</button>
+    </form>
+    <script type="text/javascript" src='{% static "js/geoposition.js" %}'></script>
+    <link rel="stylesheet" href="{% static 'css/geoposition.css' %}">
+    {% endblock content %}

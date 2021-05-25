@@ -1,0 +1,48 @@
+<head>
+	<title>HDSYS - Detalhes do Gestor</title>
+</head>
+{% extends 'hdsysapp/base.html' %}
+{% block content %}
+
+{% load static %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+
+<h1>Detalhes do Gestor</h1>
+<br>
+Nome de usuário: {{ manager.user.username }}
+<br>
+Nome Completo: {{ manager.user.fullname }}
+<br>
+E-mail: {{ manager.user.email }}
+<br>
+CPF: {{ manager.user.cpf }}
+<br>
+RG: {{ manager.user.rg }}
+<br>
+<br>
+Endereço
+<br>
+Logradouro: {{ address.street }}
+<br>
+Número: {{ address.number }}
+<br>
+Complemento: {{ address.complement }}
+<br>
+Bairro: {{ address.neighborhood }}
+<br>
+Cidade: {{ address.city }}
+<br>
+Estado: {{ address.state }}
+<br>
+País: {{ address.country }}
+<br>
+
+{{ form.media }}
+{{ form.as_p }}
+<script type="text/javascript" src='{% static "js/geoposition.js" %}'></script>
+<link rel="stylesheet" href="{% static 'css/geoposition.css' %}">
+
+<br>
+<br>
+<a href="javascript:history.back()">Voltar</a>
+{% endblock content %}
